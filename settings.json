@@ -1,8 +1,0 @@
-// vscode settings
-{
-  "editor.tabSize": 2,
-  "window.zoomLevel": 0,
-  "editor.detectIndentation": false,
-  "extensions.ignoreRecommendations": false,
-  "workbench.colorTheme": "Cobalt2"
-}

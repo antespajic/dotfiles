@@ -1,0 +1,9 @@
+[15:29:30 2025-07-22] FETCHING Version 2.40.11
+[15:29:30 2025-07-22] CREATING /home/antes/.spicetify
+[15:29:30 2025-07-22] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.40.11/spicetify-2.40.11-linux-amd64.tar.gz
+[15:29:32 2025-07-22] EXTRACTING /home/antes/.spicetify/spicetify.tar.gz
+[15:29:32 2025-07-22] SETTING EXECUTABLE PERMISSIONS TO /home/antes/.spicetify/spicetify
+[15:29:32 2025-07-22] REMOVING /home/antes/.spicetify/spicetify.tar.gz
+[15:29:32 2025-07-22] APPENDING /home/antes/.spicetify to PATH in /home/antes/.config/fish/config.fish
+[15:29:32 2025-07-22] spicetify v2.40.11 was installed successfully to /home/antes/.spicetify
+[15:29:32 2025-07-22] Run 'spicetify --help' to get started

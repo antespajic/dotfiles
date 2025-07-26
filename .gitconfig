@@ -1,13 +1,5 @@
 [user]
-	email = ante.spajic@protonmail.com
+	email = ante.spajic@proton.me
 	name = Ante Spajic
 [core]
-	editor = code
-[merge]
-    tool = vscode
-[mergetool "vscode"]
-    cmd = code --wait $MERGED
-[alias]
-	co = checkout
-	ci = commit
-	st = status
+	editor = helix
