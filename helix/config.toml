@@ -1,1 +1,19 @@
 theme = "tokyonight"
+
+[editor]
+auto-format = true
+completion-replace = true
+line-number = "relative"
+true-color = true
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
+[keys.insert]
+"C-space" = "completion"
+
+[keys.normal."C-backspace"]
+r = [":config-reload", ":reload-all"]
+o = ":config-open"
+l = ":o ~/.config/helix/languages.toml"
