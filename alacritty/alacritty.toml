@@ -24,19 +24,19 @@ multiplier = 3
 size = 12
 
 [font.normal]
-family = "monospace"
+family = "LilexNerdFont"
 style = "Regular"
 
 [font.bold]
-family = "monospace"
+family = "LilexNerdFont"
 style = "Bold"
 
 [font.italic]
-family = "monospace"
+family = "LilexNerdFont"
 style = "Italic"
 
 [font.bold_italic]
-family = "monospace"
+family = "LilexNerdFont"
 style = "Bold Italic"
 
 [selection]
