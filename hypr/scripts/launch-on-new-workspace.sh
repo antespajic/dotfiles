@@ -25,9 +25,15 @@ window_count="$(hyprctl activeworkspace -j | jq -r '.windows')"
 if [[ "$window_count" == "0" ]]; then
     target="$current_ws"
 else
-    # Not empty — dispatch to a new empty workspace
-    hyprctl dispatch 'hl.dsp.focus({ workspace = "emptyn" })'
-    target="$(hyprctl activeworkspace -j | jq -r '.id')"
+    # Find the first empty workspace ID >= 1 synchronously to avoid race conditions
+    occupied_workspaces="$(hyprctl clients -j | jq -r '.[] | .workspace.id' | sort -u)"
+    target=1
+    while echo "$occupied_workspaces" | grep -q "^$target$"; do
+        target=$((target + 1))
+    done
+    
+    # Focus the target empty workspace
+    hyprctl dispatch "hl.dsp.focus({ workspace = $target })"
 fi
 
 "$@" &
