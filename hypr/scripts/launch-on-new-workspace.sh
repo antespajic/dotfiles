@@ -15,6 +15,9 @@ if hyprctl clients -j | jq -e --arg class "$APP_CLASS" '.[] | select(.class == $
     exit 0
 fi
 
+# Get addresses of any existing windows of the same class
+existing_addrs="$(hyprctl clients -j | jq -r --arg class "$APP_CLASS" '.[] | select(.class == $class) | .address')"
+
 # Check if the current workspace is empty
 current_ws="$(hyprctl activeworkspace -j | jq -r '.id')"
 window_count="$(hyprctl activeworkspace -j | jq -r '.windows')"
@@ -31,7 +34,9 @@ fi
 pid=$!
 
 for _ in $(seq 1 60); do
-    result="$(hyprctl clients -j | jq -r --argjson pid "$pid" '.[] | select(.pid == $pid) | [.address, .workspace.id] | @tsv')"
+    result="$(hyprctl clients -j | jq -r --arg class "$APP_CLASS" --arg json_addrs "$existing_addrs" '
+        .[] | select(.class == $class) | select(.address as $addr | ($json_addrs | split("\n") | index($addr) | not)) | [.address, .workspace.id] | @tsv
+    ')"
 
     if [[ -n "$result" ]]; then
         read -r addr ws <<< "$result"
