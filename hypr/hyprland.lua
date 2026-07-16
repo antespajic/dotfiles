@@ -31,6 +31,7 @@ local music = "spotify-launcher"
 local passwordManager = "1password"
 local webapp = "chromium --new-window --enable-features=UseOzonePlatform --ozone-plaftorm=wayland --app"
 local launchOrFocus = "/home/antes/.config/hypr/scripts/launch-or-focus.sh"
+local launchOrFocusInNewWindow = "/home/antes/.config/hypr/scripts/launch-on-new-workspace.sh"
 
 -- ======= Environment Variables =======
 hl.env("HYPRCURSOR_SIZE", "24")
@@ -151,7 +152,7 @@ hl.window_rule({ match = { title = "^(Steam - Self Updater)$" }, float = true })
 
 hl.window_rule({ match = { class = "^(thunar|nemo)$" }, opacity = 0.92 })
 hl.window_rule({ match = { class = "^(discord|armcord|webcord)$" }, opacity = 0.96 })
-hl.window_rule({ match = { title = "^(QQ|Telegram)$" }, opacity = 0.95 })
+hl.window_rule({ match = { title = "^(QQ|Telegram|AyuGram)$" }, opacity = 0.95, float = true })
 hl.window_rule({ match = { title = "^(NetEase Cloud Music Gtk4)$" }, opacity = 0.95 })
 
 hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })
@@ -162,8 +163,9 @@ hl.window_rule({ match = { title = "^(imv|mpv|danmufloat|termfloat|nemo|ncmpcpp)
 hl.window_rule({ match = { title = "^(imv|mpv|danmufloat|termfloat|nemo|ncmpcpp)$" }, size = { 960, 540 } })
 hl.window_rule({ match = { title = "^(danmufloat)$" }, pin = true })
 hl.window_rule({ match = { title = "^(danmufloat|termfloat)$" }, rounding = 5 })
-hl.window_rule({ match = { class = "^(kitty|Alacritty)$" }, animation = "slide right" })
+hl.window_rule({ match = { class = "^(kitty|Alacritty)$" }, animation = "slide right", workspace = "3" })
 hl.window_rule({ match = { class = "^(org.mozilla.firefox)$" }, no_blur = true })
+hl.window_rule({ match = { class = "^(zen)$" }, workspace = "1" })
 
 hl.window_rule({ match = { float = true, workspace = "w[fv1-10]" }, border_size = 2 })
 hl.window_rule({ match = { float = true, workspace = "w[fv1-10]" }, border_color = cachylblue })
@@ -171,7 +173,6 @@ hl.window_rule({ match = { float = true, workspace = "w[fv1-10]" }, rounding = 8
 
 hl.window_rule({ match = { float = false, workspace = "f[1-10]" }, border_size = 3 })
 hl.window_rule({ match = { float = false, workspace = "f[1-10]" }, rounding = 4 })
-
 -- ======= Workspace Rules =======
 hl.workspace_rule({ workspace = "w[tv1-10]", gaps_out = 1, gaps_in = 1 })
 hl.workspace_rule({ workspace = "f[1]", gaps_out = 1, gaps_in = 1 })
@@ -182,15 +183,16 @@ hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide down" })
 hl.layer_rule({ match = { namespace = "wallpaper" }, animation = "fade 50%" })
 
 -- ======= Keybinds =======
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(launchOrFocus .. " Alacritty " .. terminal), { description = "Opens terminal" })
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(filemanager), { description = "Opens file manager" })
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(launchOrFocusInNewWindow .. " Alacritty " .. terminal), { description = "Opens terminal" })
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(launchOrFocusInNewWindow .. " Discord discord"), { description = "Opens discord" })
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(launchOrFocus .. " Thunar " .. filemanager), { description = "Opens file manager" })
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(capturing), { description = "Screen capture" })
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.window.close(), { description = "Close window" })
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("loginctl terminate-user \"\""), { description = "Exit Hyprland" })
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }), { description = "Toggle float" })
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = 0 }), { description = "Toggle fullscreen" })
 hl.bind(mainMod .. " + Y", hl.dsp.window.pin(), { description = "Pin window" })
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(launchOrFocus .. " zen zen-browser"), { description = "Launch browser" })
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(launchOrFocusInNewWindow .. " zen zen-browser"), { description = "Launch browser" })
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(webapp .. "=\"https://www.youtube.com\""), { description = "Open Youtube" })
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(music), { description = "Open Spotify" })
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("AyuGram Desktop"), { description = "Open Telegram" })

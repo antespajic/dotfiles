@@ -8,3 +8,7 @@ end
 set -gx EDITOR helix
 
 fish_add_path /home/antes/.spicetify
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/antes/.local/bin" $PATH
